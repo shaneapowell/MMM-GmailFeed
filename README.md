@@ -35,7 +35,7 @@ npm install
 | **Option** | **Default** | **Description** |
 | --- | --- | --- |
 | username | "" | Your full gmail username.  This can be your coprorate email if you are using a gsuite account |
-| password | null | Your gmail password. |
+| password | null | Your gmail password. If you are using 2 factor auth, you'll need to generate a unique "App Password". Go to your google account settings page, look in the "security" section on the left menu. You should find where to add an App Password there. |
 | updateInterval | 60000 | milliseconds between updates |
 | maxEmails | 5 | The maximum number of emails to show in the table. The table header will still show the full list of unread emails. |
 | maxSubjectLength | 40 | Maximum number of characters to show in the subject column |

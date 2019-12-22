@@ -41,3 +41,24 @@ npm install
 | maxSubjectLength | 40 | Maximum number of characters to show in the subject column |
 | maxFromLength | 15 | Maximum number of characters to show in the from column |
 | playSound | true | Play a notification chime when a new email arrives |
+
+## Chrome Startup Tricks
+I run my MagicMirror on an ancient rpi-1. It works, but it's not fast. I have it configured to auto-login my normal user into non GUI mode.  
+At the end of my users .bashrc file I added..
+```
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then exec startx; fi
+```
+I then created a .xinitrc file in my home directory with the following...
+```
+xset s off
+xset -dpms
+xset s noblank
+unclutter -root &
+
+sed -i 's/"exited_cleanly":false/"exited_cleanly":true/' ~/.config/chromium/Default/Preferences
+sed -i 's/"exit_type":"Crashed"/"exit_type":"Normal"/' ~/.config/chromium/Default/Preferences
+chromium-browser --alsa-output-device=default --noerrordialogs --disable-infobars --app=http://10.0.0.2:8999
+```
+The ```-alsa-output-device``` was necessary to force chrome to use alsa instead of PulseAudio.
+The ```--app=xxxx``` fired it up into a kind of kiosk mode
+The ```--autoplay-policy=no-user-gesture-required``` was needed to allow sound to function without having to ever touch the mouse or keybaord.

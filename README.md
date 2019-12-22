@@ -67,3 +67,9 @@ Another thing I did was turn off the swap partition.  Chrome will take up all th
 sudo dphys-swapfile swapoff
 sudo systemctl disable dphys-swapfile
 ```
+
+Lastly, I set the alsamixer to a good volume, and set it to restore on boot.
+```
+alsamixer
+sudo alsactl store
+```

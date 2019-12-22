@@ -43,8 +43,7 @@ npm install
 | playSound | true | Play a notification chime when a new email arrives |
 
 ## Chrome Startup Tricks
-I run my MagicMirror on an ancient rpi-1. It works, but it's not fast. I have it configured to auto-login my normal user into non GUI mode.  
-At the end of my users .bashrc file I added..
+I run my MagicMirror on an ancient rpi-1. It works, but it's not fast. I have it configured to auto-login my normal user into non GUI mode.  I did it this way to avoid using any window manager or login manager of any sort.  My rpi has to little ram for that.   At the end of my users .bashrc file I added..
 ```
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then exec startx; fi
 ```
@@ -62,3 +61,9 @@ chromium-browser --alsa-output-device=default --noerrordialogs --disable-infobar
 The ```-alsa-output-device``` was necessary to force chrome to use alsa instead of PulseAudio.
 The ```--app=xxxx``` fired it up into a kind of kiosk mode
 The ```--autoplay-policy=no-user-gesture-required``` was needed to allow sound to function without having to ever touch the mouse or keybaord.
+
+Another thing I did was turn off the swap partition.  Chrome will take up all the ram it can get, and more!  I found that after 24 hours, my swap partition was 100% full.  Disabling the swap partition didn't negativly affect this already slow machine. Chrome works just fine without having access to ALL THE RAM!!
+```
+sudo dphys-swapfile swapoff
+sudo systemctl disable dphys-swapfile
+```

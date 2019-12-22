@@ -1,0 +1,37 @@
+.MMM-GmailFeed .mailtable {
+  font-size: 20px;
+  line-height: 25px;
+}
+
+.MMM-GmailFeed .colfrom {
+  padding-left: 0;
+  padding-right: 3;
+  text-align: left;
+  font-weight: 200;
+  white-space: nowrap;
+  font-weight: 300;
+  font-size: 20px;
+  text-align: left;
+}
+
+.MMM-GmailFeed .colsubj {
+  white-space: nowrap;
+  font-size: 20px;
+  text-align: left;
+}
+
+.MMM-GmailFeed .coldt {
+  width: 1px;
+  white-space: nowrap;
+  font-weight: 300;
+  font-size: 20px;
+  text-align: right;
+}
+
+.MMM-GmailFeed .coltm { 
+  width: 1px;
+  white-space: nowrap;
+  font-weight; 300;
+  font-size: 20px;
+  text-align: right;
+}

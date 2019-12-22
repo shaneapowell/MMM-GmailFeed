@@ -1,164 +1,39 @@
-# MMM-JsonTable
-A module for the MagicMirror project which creates a table filled with a list gathered from a json request.
+# MMM-GmailFeed
+A module for the MagicMirror project which creates a table filled with the current list of unread gmail messages.  This module uses the gmail RSS feed instead of IMAP.
 
-All the variables of the objects in the array are represented by a table column.
-For every column it checks if a valid DateTime is given, and then formats it to HH:mm:ss if it is today or YYYY-MM-DD otherwise.
-
-## Example 1
+## Example 1 (tba)
 End result:
 
 ![](example1.png)
 
-Raw json response:
-
-```json
-{
-    "items": [
-        {
-            "name": "Watt",
-            "value": "270 Watt"
-        },
-        {
-            "name": "Today",
-            "value": "5.85 kWh"
-        },
-        {
-            "name": "ThisWeek",
-            "value": "5.83 kWh"
-        },
-        {
-            "name": "ThisMonth",
-            "value": "12.8 kWh"
-        },
-        {
-            "name": "LastMonth",
-            "value": "246.75 kWh"
-        }
-    ]
-}
-```
-
 Configuration:
 
 ```javascript
 {
-	module: 'MMM-JsonTable',
-	position: 'top_right',
-	header: 'HouseDB Sevensegment',
+	module: 'MMM-GmailFeed',
+	position: 'bottom_bar',
 	config: {
-		url: 'https://xyz/abc/get.json', // Required
-		arrayName: 'items' // Optional
+		username: 'yourname@gmail.com',
+		password: 'yourpassword',
+		updateInterval: 60000,
+		maxEmails: 5,
+		maxSubjectLength: 38,
+		maxFromLength: 15
 	}
-}
-```
-
-## Example 2
-
-![](example2.png)
-
-Raw json response:
-
-```json
-{
-    "currentUsages": [
-        {
-            "deviceName": "P1",
-            "currentWattValue": 180,
-            "todayKwhUsage": 5.902,
-            "lastUpdate": "2018-04-02T18:12:06Z"
-        },
-        {
-            "deviceName": "Studie - MainDown",
-            "currentWattValue": 76,
-            "todayKwhUsage": 0.46,
-            "lastUpdate": "2018-04-02T18:06:52Z"
-        },
-        {
-            "deviceName": "BoilerPower",
-            "currentWattValue": 0,
-            "todayKwhUsage": 2.21,
-            "lastUpdate": "2018-04-02T17:30:01Z"
-        },
-        {
-            "deviceName": "Koelkast",
-            "currentWattValue": 1.3,
-            "todayKwhUsage": 0.55,
-            "lastUpdate": "2018-04-02T18:09:55Z"
-        },
-        {
-            "deviceName": "Vaatwasser",
-            "currentWattValue": 0.5,
-            "todayKwhUsage": 0.01,
-            "lastUpdate": "2018-04-02T18:10:51Z"
-        },
-        {
-            "deviceName": "Wasmachine",
-            "currentWattValue": 0,
-            "todayKwhUsage": 0,
-            "lastUpdate": "2018-04-02T18:12:06Z"
-        }
-    ]
-}
-```
-
-Configuration:
-
-```javascript
-{
-	module: 'MMM-JsonTable',
-	position: 'top_right',
-	header: 'HouseDB Current Usages',
-	config: {
-		url: 'https://xyz/abc/get.json', // Required
-		arrayName: 'currentUsages', // Optional
-		tryFormatDate: true
-	}
-}
-```
-
-## Example 3 (with font awesome icons)
-
-![](https://user-images.githubusercontent.com/1011699/53985507-104ecc00-411c-11e9-9ca4-c994f0ae62e1.png)
-
-Raw json response:
-
-```json
-{
-   "cups":[  
-      {  
-         "icon":"fa-calendar",
-         "data":"Senaste bryggning",
-         "value":"2019-03-07",
-         "type":""
-      },
-      {  
-         "icon":"fa-clock-o",
-         "data":"Klockan",
-         "value":"17:32:06",
-         "type":""
-      },
-      {  
-         "icon":"fa-coffee",
-         "data":"Totalt antal bryggda koppar",
-         "value":60,
-         "type":"st"
-      },
-      ...
-   ]
 }
 ```
 
 ## Installation
 ````
-git clone https://github.com/timdows/MMM-JsonTable.git
+git clone https://github.com/shaneapowell/MMM-GmailFeed.git
 ````
 
 ## Config Options
 | **Option** | **Default** | **Description** |
 | --- | --- | --- |
-| url | "" | The full url to get the json response from |
-| arrayName | null | Define the name of the variable that holds the array to display |
-| keepColumns | [] | Columns on json will be showed |
-| tryFormatDate | false | For every column it checks if a valid DateTime is given, and then formats it to HH:mm:ss if it is today or YYYY-MM-DD otherwise |
-| size | 0-3 | Text size at table, 0 is default, and 3 is H3 |
-| updateInterval | 15000 | Milliseconds between the refersh |
+| username | "" | Your full gmail username.  This can be your coprorate email if you are using a gsuite account |
+| password | null | Your gmail password. |
+| updateInterval | 60000 | milliseconds between updates |
+| maxEmails | 5 | The maximum number of emails to show in the table. The table header will still show the full list of unread emails. |
+| maxSubjectLength | 40 | Maximum number of characters to show in the subject column |
+| maxFromLength | 15 | Maximum number of characters to show in the from column |

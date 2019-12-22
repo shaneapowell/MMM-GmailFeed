@@ -4,8 +4,8 @@
 }
 
 .MMM-GmailFeed .colfrom {
-  padding-left: 0;
-  padding-right: 3;
+  width: 1px;
+  padding-right: 8px;
   text-align: left;
   font-weight: 200;
   white-space: nowrap;

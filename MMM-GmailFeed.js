@@ -2,6 +2,7 @@
 
 Module.register("MMM-GmailFeed", {
 
+	mailCount: 0,
 	jsonData: null,
 	errorData: null,
 
@@ -10,7 +11,8 @@ Module.register("MMM-GmailFeed", {
 		updateInterval: 60000,
 		maxEmails: 5,
 		maxSubjectLength: 40,
-		maxFromLength: 15
+		maxFromLength: 15,
+		playSound: true
 	},
 
 	start: function () {
@@ -64,40 +66,48 @@ Module.register("MMM-GmailFeed", {
 		if (!this.jsonData) {
 			return "GmailFeed";
 		}
+
+		if (this.config.playSound && this.jsonData.fullcount > this.mailCount) {
+			new Audio(this.file("eventually.mp3")).play();
+		}
+
+		this.mailCount = this.jsonData.fullcount;
+
 		return this.jsonData.title + "  -  " + this.jsonData.fullcount;
 	},
 
 	// Override dom generator.
 	getDom: function () {
 
-		var wrapper = document.createElement("table");
-		wrapper.classList.add("mailtable");
+		var table = document.createElement("table");
+
+		table.classList.add("mailtable");
 		if (this.errorData) {
-			wrapper.innerHTML = this.errorData;
-			return wrapper;
+			table.innerHTML = this.errorData;
+			return table;;
 		}
 
 		if (!this.jsonData) {
-			wrapper.innerHTML = "Loading...";
-			return wrapper;
+			table.innerHTML = "Loading...";
+			return table;
 		}
 
 		if (!this.jsonData.entry) {
 			var row = document.createElement("tr");
-			wrapper.append(row);
+			table.append(row);
 
 			var cell = document.createElement("td");
 			row.append(cell);
 			cell.append(document.createTextNode("No New Mail"));
 			cell.setAttribute("colspan", "4");
-			return wrapper;
+			return table;
 		}
 
 		var items = this.jsonData.entry;
 
 		// If the items is null, no new messages
 		if (!items) {
-			return wrapper;
+			return table;
 		}
 	
 		// If the items is not an array, it's a single entry
@@ -107,10 +117,10 @@ Module.register("MMM-GmailFeed", {
 	
 		items.forEach(element => {
 			var row = this.getTableRow(element);
-			wrapper.appendChild(row);
+			table.appendChild(row);
 		});
 
-		return wrapper;
+		return table;
 	},
 
 	getTableRow: function (jsonObject) {

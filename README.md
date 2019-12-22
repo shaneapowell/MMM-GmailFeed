@@ -18,7 +18,8 @@ Configuration:
 		updateInterval: 60000,
 		maxEmails: 5,
 		maxSubjectLength: 38,
-		maxFromLength: 15
+		maxFromLength: 15,
+		playSound: true
 	}
 }
 ```
@@ -37,3 +38,4 @@ git clone https://github.com/shaneapowell/MMM-GmailFeed.git
 | maxEmails | 5 | The maximum number of emails to show in the table. The table header will still show the full list of unread emails. |
 | maxSubjectLength | 40 | Maximum number of characters to show in the subject column |
 | maxFromLength | 15 | Maximum number of characters to show in the from column |
+| playSound | true | Play a notification chime when a new email arrives |

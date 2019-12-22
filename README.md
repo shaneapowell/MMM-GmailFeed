@@ -1,7 +1,7 @@
 # MMM-GmailFeed
 A module for the MagicMirror project which creates a table filled with the current list of unread gmail messages.  This module uses the gmail RSS feed instead of IMAP.
 
-## Example 1 (tba)
+## Example 1
 End result:
 
 ![](example1.png)

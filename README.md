@@ -73,3 +73,8 @@ Lastly, I set the alsamixer to a good volume, and set it to restore on boot.
 alsamixer
 sudo alsactl store
 ```
+
+## Planned Upgrades/Updates
+* 2 Startup Modes. Tabular(default) or Notification Icon.
+  * Tabular mode will be the default, were a short list of the current unread emails are listed.
+  * Notification mode will be a small(ish) gmail icon, with a counter value on it.

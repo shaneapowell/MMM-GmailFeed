@@ -7,8 +7,7 @@ Module.register("MMM-GmailFeed", {
 
 	// Default module config.
 	defaults: {
-		url: "",
-		updateInterval: 15000,
+		updateInterval: 60000,
 		maxEmails: 5,
 		maxSubjectLength: 40,
 		maxFromLength: 15
@@ -133,26 +132,9 @@ Module.register("MMM-GmailFeed", {
 		tmNode.append(document.createTextNode(issueDt.format("h:mm a")));
 
 		fromNode.classList.add("colfrom");
-//		fromNode.classList.add("light");
-//		fromNode.setAttribute("align", "left");
-//		fromNode.classList.add("small");
-//		fromNode.setAttribute("nowrap", "");
 		subjNode.classList.add("colsubj");
-//		subjNode.setAttribute("align", "left");
-//		subjNode.classList.add("title");
 		dtNode.classList.add("coldt");
-//		dtNode.classList.add("light");
-//		dtNode.classList.add("date");
-//		dtNode.classList.add("small");
-//		dtNode.setAttribute("align", "right");
-//		dtNode.setAttribute("nowrap", "");
 		tmNode.classList.add("coltm");
-//		tmNode.classList.add("light");
-//		tmNode.classList.add("time");
-//		tmNode.classList.add("small");
-//		tmNode.setAttribute("align", "right");
-//		tmNode.setAttribute("nowrap", "");
-//		tmNode.setAttribute("width", "1px");
 
 		row.append(fromNode);
 		row.append(subjNode);

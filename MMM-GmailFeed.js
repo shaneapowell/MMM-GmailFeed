@@ -8,7 +8,7 @@ Module.register("MMM-GmailFeed", {
 
 	// Default module config.
 	defaults: {
-		updateInterval: 60000,
+		updateInterval: 2 * 1000,
 		maxEmails: 5,
 		maxSubjectLength: 40,
 		maxFromLength: 15,
@@ -73,18 +73,27 @@ Module.register("MMM-GmailFeed", {
 
 		this.mailCount = this.jsonData.fullcount;
 
-		return this.jsonData.title + "  -  " + this.jsonData.fullcount;
+		if (this.jsonData.fullcount != 0) {
+			return this.jsonData.title + "  -  " + this.jsonData.fullcount;
+		} else {
+			return this.jsonData.title = "";
+		}
 	},
 
 	// Override dom generator.
 	getDom: function () {
 
 		var table = document.createElement("table");
-
-		table.classList.add("mailtable");
+		
+		if (this.jsonData.fullcount != 0) {
+			table.classList.add("mailtable");
+		} else {
+			table.classList.add("hidden");
+		}
+		
 		if (this.errorData) {
 			table.innerHTML = this.errorData;
-			return table;;
+			return table;
 		}
 
 		if (!this.jsonData) {
@@ -119,7 +128,7 @@ Module.register("MMM-GmailFeed", {
 			var row = this.getTableRow(element);
 			table.appendChild(row);
 		});
-
+		
 		return table;
 	},
 

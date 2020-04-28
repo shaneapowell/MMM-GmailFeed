@@ -35,3 +35,7 @@
   font-size: 20px;
   text-align: right;
 }
+
+.MMM-GmailFeed .hidden {
+  display: none;
+}

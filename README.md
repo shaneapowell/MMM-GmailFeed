@@ -25,7 +25,8 @@ Configuration:
 		maxEmails: 5,
 		maxSubjectLength: 38,
 		maxFromLength: 15,
-		playSound: true
+		playSound: true,
+		autoHide: true,
 	}
 }
 ```

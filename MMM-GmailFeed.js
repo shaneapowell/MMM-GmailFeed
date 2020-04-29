@@ -12,7 +12,8 @@ Module.register("MMM-GmailFeed", {
 		maxEmails: 5,
 		maxSubjectLength: 40,
 		maxFromLength: 15,
-		playSound: true
+		playSound: true,
+		autoHide: true,
 	},
 
 	start: function () {
@@ -73,10 +74,10 @@ Module.register("MMM-GmailFeed", {
 
 		this.mailCount = this.jsonData.fullcount;
 
-		if (this.jsonData.fullcount != 0) {
-			return this.jsonData.title + "  -  " + this.jsonData.fullcount;
-		} else {
+		if (this.jsonData.fullcount == 0 && this.config.autoHide) {
 			return this.jsonData.title = "";
+		} else {
+			return this.jsonData.title + "  -  " + this.jsonData.fullcount;
 		}
 	},
 
@@ -85,10 +86,10 @@ Module.register("MMM-GmailFeed", {
 
 		var table = document.createElement("table");
 		
-		if (this.jsonData.fullcount != 0) {
-			table.classList.add("mailtable");
-		} else {
+		if (this.jsonData.fullcount == 0 && this.config.autoHide) {
 			table.classList.add("hidden");
+		} else {
+			table.classList.add("mailtable");
 		}
 		
 		if (this.errorData) {
@@ -162,5 +163,4 @@ Module.register("MMM-GmailFeed", {
 	
 		return row;
 	}
-
 });

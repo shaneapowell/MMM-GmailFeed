@@ -14,6 +14,7 @@ Module.register("MMM-GmailFeed", {
 		maxFromLength: 15,
 		playSound: true,
 		autoHide: true,
+		displayMode: "table",
 	},
 
 	start: function () {
@@ -74,10 +75,18 @@ Module.register("MMM-GmailFeed", {
 
 		this.mailCount = this.jsonData.fullcount;
 
-		if (this.jsonData.fullcount == 0 && this.config.autoHide) {
-			return this.jsonData.title = "";
-		} else {
-			return this.jsonData.title + "  -  " + this.jsonData.fullcount;
+		if (this.config.displayMode == "table") {
+			if (this.jsonData.fullcount == 0 && this.config.autoHide) {
+				return this.jsonData.title = "";
+			} else {
+				return this.jsonData.title + "  -  " + this.jsonData.fullcount;
+			}
+		} else if (this.config.displayMode == "notification") {
+			/*if (this.jsonData.fullcount == 0 && this.config.autoHide) {*/
+				return this.jsonData.title = "";
+			/*} else {
+				return this.jsonData.title = "GMAIL" + "  -  " + this.jsonData.fullcount;
+			}*/
 		}
 	},
 
@@ -105,19 +114,21 @@ Module.register("MMM-GmailFeed", {
 		if (!this.jsonData.entry) {
 			var row = document.createElement("tr");
 			table.append(row);
-
-			var cell = document.createElement("td");
-			row.append(cell);
-			cell.append(document.createTextNode("No New Mail"));
-			cell.setAttribute("colspan", "4");
-			return table;
+			if (this.config.displayMode == "table") {
+				var cell = document.createElement("td");
+				row.append(cell);
+				cell.append(document.createTextNode("No New Mail"));
+				cell.setAttribute("colspan", "4");
+				return table; 
+			}
 		}
 
 		var items = this.jsonData.entry;
-
+		if (this.config.displayMode == "table") {
 		// If the items is null, no new messages
 		if (!items) {
 			return table;
+		}
 		}
 	
 		// If the items is not an array, it's a single entry
@@ -125,10 +136,28 @@ Module.register("MMM-GmailFeed", {
 			items = [ items ]
 		}
 	
-		items.forEach(element => {
-			var row = this.getTableRow(element);
-			table.appendChild(row);
-		});
+		if (this.config.displayMode == "table") {
+			items.forEach(element => {
+				var row = this.getTableRow(element);
+				table.appendChild(row);
+			});
+		} else if (this.config.displayMode == "notification") {
+			var z = document.createElement("a");
+			z.setAttribute("height", "50px");
+			z.setAttribute("width", "100px");
+			z.setAttribute("href", "#");
+			z.classList.add("notification");
+			var logo = document.createElement("img");
+			logo.setAttribute("src", "https://cdn2.iconfinder.com/data/icons/social-icons-color/512/gmail-512.png");
+			logo.setAttribute("height", "50px");
+			logo.setAttribute("width", "50px");
+			var x = document.createElement("span");
+			x.classList.add("badge");
+			x.innerHTML = this.jsonData.fullcount;
+			z.appendChild(x);
+			z.appendChild(logo);
+			table.appendChild(z);
+        }
 		
 		return table;
 	},

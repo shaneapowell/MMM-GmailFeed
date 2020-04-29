@@ -6,6 +6,12 @@ End result:
 
 ![](example1.png)
 
+Auto-Hide enabled: 
+- Mail in inbox:
+![](autoHideShown.png)
+- No new mail in inbox:
+![](autoHideHidden.png)
+
 Configuration:
 
 ```javascript
@@ -41,6 +47,7 @@ npm install
 | maxSubjectLength | 40 | Maximum number of characters to show in the subject column |
 | maxFromLength | 15 | Maximum number of characters to show in the from column |
 | playSound | true | Play a notification chime when a new email arrives |
+| autoHide | true | Automatically hide the module when you have no new emails and show the module when you do |
 
 ## Chrome Startup Tricks
 I run my MagicMirror on an ancient rpi-1. It works, but it's not fast. I have it configured to auto-login my normal user into non GUI mode.  I did it this way to avoid using any window manager or login manager of any sort.  My rpi has to little ram for that.   At the end of my users .bashrc file I added..

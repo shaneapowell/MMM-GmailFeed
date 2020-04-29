@@ -8,7 +8,7 @@ Module.register("MMM-GmailFeed", {
 
 	// Default module config.
 	defaults: {
-		updateInterval: 2 * 1000,
+		updateInterval: 60000,
 		maxEmails: 5,
 		maxSubjectLength: 40,
 		maxFromLength: 15,

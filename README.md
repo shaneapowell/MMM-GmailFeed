@@ -1,7 +1,7 @@
 # MMM-GmailFeed
 A module for the MagicMirror project which creates a table filled with the current list of unread gmail messages.  This module uses the gmail RSS feed instead of IMAP.
 
-## Example 1
+## Images
 End result:
 
 ![](example1.png)
@@ -11,6 +11,9 @@ Auto-Hide enabled:
 ![](autoHideShown.png)
 - No new mail in inbox:
 ![](autoHideHidden.png)
+
+Notification Mode:
+![](notificationMode.png)
 
 Configuration:
 
@@ -27,6 +30,7 @@ Configuration:
 		maxFromLength: 15,
 		playSound: true,
 		autoHide: true,
+		displayMode: "table",
 	}
 }
 ```
@@ -49,6 +53,7 @@ npm install
 | maxFromLength | 15 | Maximum number of characters to show in the from column |
 | playSound | true | Play a notification chime when a new email arrives |
 | autoHide | true | Automatically hide the module when you have no new emails and show the module when you do |
+| displayMode | table | Display module as "table" or "notification" |
 
 ## Chrome Startup Tricks
 I run my MagicMirror on an ancient rpi-1. It works, but it's not fast. I have it configured to auto-login my normal user into non GUI mode.  I did it this way to avoid using any window manager or login manager of any sort.  My rpi has to little ram for that.   At the end of my users .bashrc file I added..
@@ -85,4 +90,3 @@ sudo alsactl store
 ## Planned Upgrades/Updates
 * 2 Startup Modes. Tabular(default) or Notification Icon.
   * Tabular mode will be the default, were a short list of the current unread emails are listed.
-  * Notification mode will be a small(ish) gmail icon, with a counter value on it.

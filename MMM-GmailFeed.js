@@ -148,7 +148,7 @@ Module.register("MMM-GmailFeed", {
 			z.setAttribute("href", "#");
 			z.classList.add("notification");
 			var logo = document.createElement("img");
-			logo.setAttribute("src", "https://cdn2.iconfinder.com/data/icons/social-icons-color/512/gmail-512.png");
+			logo.setAttribute("src", "/modules/MMM-GmailFeed/Gmail-logo.png");
 			logo.setAttribute("height", "50px");
 			logo.setAttribute("width", "50px");
 			var x = document.createElement("span");

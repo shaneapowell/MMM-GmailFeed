@@ -54,6 +54,7 @@ npm install
 | playSound | true | Play a notification chime when a new email arrives |
 | autoHide | true | Automatically hide the module when you have no new emails and show the module when you do |
 | displayMode | table | Display module as "table" or "notification" |
+| color | true | If true, notification icon will be in color, if false, notification icon will be in grayscale |
 
 ## Chrome Startup Tricks
 I run my MagicMirror on an ancient rpi-1. It works, but it's not fast. I have it configured to auto-login my normal user into non GUI mode.  I did it this way to avoid using any window manager or login manager of any sort.  My rpi has to little ram for that.   At the end of my users .bashrc file I added..
@@ -88,5 +89,4 @@ sudo alsactl store
 ```
 
 ## Planned Upgrades/Updates
-* 2 Startup Modes. Tabular(default) or Notification Icon.
-  * Tabular mode will be the default, were a short list of the current unread emails are listed.
+  * Please leave coomments and suggestions!

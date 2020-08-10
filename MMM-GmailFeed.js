@@ -15,6 +15,7 @@ Module.register("MMM-GmailFeed", {
 		playSound: true,
 		autoHide: true,
 		displayMode: "table",
+		color: true,
 	},
 
 	start: function () {
@@ -148,7 +149,11 @@ Module.register("MMM-GmailFeed", {
 			z.setAttribute("href", "#");
 			z.classList.add("notification");
 			var logo = document.createElement("img");
-			logo.setAttribute("src", "/modules/MMM-GmailFeed/Gmail-logo.png");
+			if (this.config.color = true) {
+				logo.setAttribute("src", "/modules/MMM-GmailFeed/Gmail-logo.png");
+			} else if (this.config.color = false) {
+				logo.setAttribute("src", "/modules/MMM-GmailFeed/Gmail-logo-grayscale.png");
+			}
 			logo.setAttribute("height", "50px");
 			logo.setAttribute("width", "50px");
 			var x = document.createElement("span");

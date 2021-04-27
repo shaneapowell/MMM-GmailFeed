@@ -149,9 +149,9 @@ Module.register("MMM-GmailFeed", {
 			z.setAttribute("href", "#");
 			z.classList.add("notification");
 			var logo = document.createElement("img");
-			if (this.config.color = true) {
+			if (this.config.color == true) {
 				logo.setAttribute("src", "/modules/MMM-GmailFeed/Gmail-logo.png");
-			} else if (this.config.color = false) {
+			} else if (this.config.color == false) {
 				logo.setAttribute("src", "/modules/MMM-GmailFeed/Gmail-logo-grayscale.png");
 			}
 			logo.setAttribute("height", "50px");

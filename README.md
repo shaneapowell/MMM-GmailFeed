@@ -1,10 +1,19 @@
 # MMM-GmailFeed
 A module for the MagicMirror project which creates a table filled with the current list of unread gmail messages.  This module uses the gmail RSS feed instead of IMAP.
 
-## Example 1
+## Images
 End result:
 
 ![](example1.png)
+
+Auto-Hide enabled: 
+- Mail in inbox:
+![](autoHideShown.png)
+- No new mail in inbox:
+![](autoHideHidden.png)
+
+Notification Mode:
+![](notificationMode.PNG)
 
 Configuration:
 
@@ -19,14 +28,16 @@ Configuration:
 		maxEmails: 5,
 		maxSubjectLength: 38,
 		maxFromLength: 15,
-		playSound: true
+		playSound: true,
+		autoHide: true,
+		displayMode: "table",
 	}
 }
 ```
 
 ## Installation
 ````
-git clone https://github.com/shaneapowell/MMM-GmailFeed.git
+git clone https://github.com/jamescross449/MMM-GmailFeed.git
 cd MMM-GmailFeed
 npm install
 ````
@@ -41,6 +52,18 @@ npm install
 | maxSubjectLength | 40 | Maximum number of characters to show in the subject column |
 | maxFromLength | 15 | Maximum number of characters to show in the from column |
 | playSound | true | Play a notification chime when a new email arrives |
+| autoHide | true | Automatically hide the module when you have no new emails and show the module when you do |
+| displayMode | table | Display module as "table" or "notification" |
+| color | true | If true, notification icon will be in color, if false, notification icon will be in grayscale |
+
+## Credentials
+You should be able to use your normal gmail username and password. If you have 2FA (2 factor auth) enabled however, it's a bit different. You need to create a unique "App Password".
+- Go to your "Manage your Google Account" screen.
+- Select the "Security" link on the left side.
+- Scroll down to find "App Passwords" and select it.
+- In the "select app" pull down, pick Mail.
+- In the "select device" pull down, pick Other. Name it what ever you want.  I called mine "MagicMirror"
+- Click "Generate". That sequence of characters is the "Password" value you should use.
 
 ## Credentials
 You should be able to use your normal gmail username and password. If you have 2FA (2 factor auth) enabled however, it's a bit different. You need to create a unique "App Password".
@@ -84,6 +107,4 @@ sudo alsactl store
 ```
 
 ## Planned Upgrades/Updates
-* 2 Startup Modes. Tabular(default) or Notification Icon.
-  * Tabular mode will be the default, were a short list of the current unread emails are listed.
-  * Notification mode will be a small(ish) gmail icon, with a counter value on it.
+  * Please leave coomments and suggestions!

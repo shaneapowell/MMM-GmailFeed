@@ -31,7 +31,32 @@
 .MMM-GmailFeed .coltm { 
   width: 1px;
   white-space: nowrap;
-  font-weight; 300;
+  font-weight: 300;
   font-size: 20px;
   text-align: right;
 }
+
+.MMM-GmailFeed .hidden {
+  display: none;
+}
+
+.notification {
+  color: #fff;
+  text-decoration: none;
+  padding: 0px 0px;
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+  margin: 5px;
+}
+
+.MMM-GmailFeed .notification .badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 3px 10px;
+  border-radius: 50%;
+  background-color: #fff;
+  color: #000;
+}
+
